@@ -15,9 +15,6 @@ public class GetUserMiddleware
     public async Task InvokeAsync(HttpContext context)
     {
         StringBuilder result = new StringBuilder();
-        _usersService.GetAllUsers().Clear();
-        _usersService.SetUer(new User("Slava","123123123"));
-        _usersService.SetUer(new User("Dima","23423423432"));
         _usersService.GetAllUsers().ForEach(user =>
         {
             var userText = JsonSerializer.Serialize(user);
