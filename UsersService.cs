@@ -1,14 +1,41 @@
-﻿public class UsersService
+﻿using System.Net;
+using FireSharp.Config;
+using FireSharp.Interfaces;
+using FireSharp.Response;
+
+public class UsersService
 {
-    private List<User> _users = new List<User>();
-
-    public void SetUer(User user)
+    /// <summary>
+    /// todo логика связанная с инициализацией и действием с firebase перенести в отдельный сервис
+    /// </summary>
+    IFirebaseConfig _config = new FirebaseConfig
     {
-        _users.Add(user);
+        AuthSecret= "j3qUnOdTTE37MtXVdp3He0DpZ8EvJbtp95cw2Mlo", 
+        BasePath = "https://cardsvoice-43e41-default-rtdb.europe-west1.firebasedatabase.app"
+    };
+    IFirebaseClient _client;
+
+    public UsersService()
+    {
+        _client = new FireSharp.FirebaseClient(_config);
     }
 
-    public List<User> GetAllUsers()
+    public bool CreateUser(User user)
     {
-        return _users;
+        PushResponse response = _client.Push("Users/", user);
+        user.Id = response.Result.name;
+        SetResponse setResponse = _client.Set($"Users/{user.Id}", user);
+
+        return setResponse.StatusCode == HttpStatusCode.OK;
     }
+
+    /*public List<User> GetAllUsers()
+    {
+
+    }
+
+    public User GetUser(string uniqueId)
+    {
+
+    }*/
 }
