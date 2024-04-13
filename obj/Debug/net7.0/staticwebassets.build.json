@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "r5RqX1/yj93ro4c67KEYfn28ge/R/jRU4qP39luIYS8=",
+  "Source": "VoiceCardsServer",
+  "BasePath": "_content/VoiceCardsServer",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

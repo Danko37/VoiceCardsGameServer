@@ -13,4 +13,6 @@ app.Map("/set_user", context =>
     context.UseMiddleware<SetUserMiddleware>();
 });
 
+app.Run(context => context.Response.WriteAsync("ok"));
+
 app.Run();

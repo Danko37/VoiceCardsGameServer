@@ -11,8 +11,8 @@
 
     public async Task InvokeAsync(HttpContext context)
     {
-        _usersService.CreateUser(new User("Vladimir"));
+        _usersService.CreateUser(new User(context.Request.Form["Name"]!));
 
-        await context.Response.WriteAsync("ok");
+        await _next.Invoke(context);
     }
 }
